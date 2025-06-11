@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayor's Coerner - City of Riverside</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header {
+            background: linear-gradient(180deg, #FF6B35 0%, #F7931E 50%, #FF6B35 100%);
+            padding: 20px;
+            text-align: center;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .header .tagline {
+            color: #FFF8DC;
+            font-size: 14px;
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .nav-bar {
+            background: linear-gradient(180deg, #4169E1 0%, #1E90FF 50%, #4169E1 100%);
+            padding: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .nav-bar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-bar li {
+            margin: 0 2px;
+        }
+
+        .nav-bar a {
+            display: block;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .nav-bar a:hover {
+            background: linear-gradient(180deg, #FFD700 0%, #FFA500 100%);
+            color: #333;
+            text-shadow: none;
+            transform: translateY(-2px);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #9370DB 0%, #8A2BE2 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .page-header h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .page-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .posts-container {
+            padding: 20px;
+        }
+
+        .mayor-post {
+            background: white;
+            border: 3px solid #DDD;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mayor-post:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .post-header {
+            background: linear-gradient(90deg, #32CD32 0%, #228B22 100%);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mayor-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            object-fit: cover;
+        }
+
+        .post-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .post-date {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .post-content {
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .post-content h4 {
+            color: #2F4F4F;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .post-content p {
+            margin-bottom: 15px;
+        }
+
+        .post-footer {
+            background: linear-gradient(90deg, #F0F8FF 0%, #E6F3FF 100%);
+            padding: 10px 20px;
+            border-top: 1px solid #DDD;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .post-tags {
+            display: inline-flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: linear-gradient(90deg, #FF69B4 0%, #FF1493 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .priority-post {
+            border: 3px solid #FF4500;
+            background: linear-gradient(135deg, #FFF8DC 0%, #FFEBCD 100%);
+        }
+
+        .priority-post .post-header {
+            background: linear-gradient(90deg, #FF4500 0%, #FF6347 100%);
+        }
+
+        .announcement-banner {
+            background: linear-gradient(90deg, #FF0000 0%, #FF4500 100%);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 20px;
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .back-button {
+            background: linear-gradient(180deg, #4169E1 0%, #1E90FF 100%);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(180deg, #FFD700 0%, #FFA500 100%);
+            color: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+        }
+
+        .footer {
+            background: linear-gradient(180deg, #2F4F4F 0%, #708090 100%);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: #87CEEB;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #FFD700;
+        }
+
+        .photo-gallery {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .gallery-photo {
+            width: 120px;
+            height: 80px;
+            border-radius: 8px;
+            border: 2px solid #DDD;
+            object-fit: cover;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-photo:hover {
+            transform: scale(1.1);
+            border-color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Blackstone City</h1>
+            <div class="tagline">"Where People Meets Progress" - Est. 1985</div>
+        </header>
+
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="index.html">🏠 Home</a></li>
+                <li><a href="mayor-posts.html">📰 News</a></li>
+            </ul>
+        </nav>
+
+        <div class="page-header">
+            <h2>👨‍💼 Mayor's Corner 👨‍💼</h2>
+            <p>Direct updates and messages from Mayor and our city leadership team</p>
+        </div>
+
+        <div class="posts-container">
+            <!-- Priority Post -->
+            <article class="mayor-post priority-post">
+                <div class="post-header">
+                    <img src="avatars/mayor_alex.png" alt="Alexander" class="mayor-photo">
+                    <div class="post-info">
+                        <h3>🎖️ Mayor Alexander</h3>
+                        <div class="post-date">June 11</div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h4>NEWS: The city council gave us 1.3 million dollars to build new high-rises in the city!</h4>
+                    <p>Friends, we are pleased to inform you that from November 2024 the construction of new high-rise buildings in the city will begin!
+
+They will include:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li>2 Business floors</li>
+                        <li>10 Residential floors</li>
+                        <li>Roof with a restaraunt and swimming pool</li>
+                    </ul>
+                    <p>Construction begins this fall, with completion expected by summer 2026. This represents the largest investment in our community's recreational infrastructure in over 20 years!</p>
+                </div>
+                <div class="post-footer">
+                    <div class="post-tags">
+                        <span class="tag">New!</span>
+                        <span class="tag">Community</span>
+                        <span class="tag">Homes</span>
+                        <span class="tag">Buisness</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="mayor-post">
+                <div class="post-header">
+                    <img src="avatars/mayor_alex.png" alt="Deputy Mayor Sarah Chen" class="mayor-photo">
+                    <img src="avatars/mayor_yaroslav.png" alt="Deputy Mayor Sarah Chen" class="mayor-photo">
+                    <div class="post-info">
+                        <h3>Mayors Alexander, Yaroslav</h3>
+                        <div class="post-date">May 7</div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h4>The child is missing!</h4>
+                    <p>Parents Kevin and Lewis Blackew report that their child suddenly disappeared the day after his birthday. His signs:</p>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><strong>Name</strong> - Harry Blackew</li>
+                        <li><strong>Age</strong> - 15/16 y.o</li>
+                        <li>Missing since yesterday</li>
+                        <li><strong>Features</strong> - Yellow skin, T-shirt with the "Roblox" logo, dark blue pants</li>
+                    </ul>
+                    <p>If you have seen him or have information about his whereabouts, call ██████████.</p>
+                </div>
+                <div class="post-footer">
+                    <div class="post-tags">
+                        <span class="tag">Missing person</span>
+                        <span class="tag">Message</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="mayor-post">
+                <div class="post-header">
+                    <img src="avatars/mayor_yaroslav.png" alt="Mayor Johnson" class="mayor-photo">
+                    <div class="post-info">
+                        <h3>Mayor Yaroslav</h3>
+                        <div class="post-date">May 5</div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h4>New district - "Sechenov district"!</h4>
+                    <p>Our city is expanding, and it's cool! The new street will be named after the great physicist, neurosurgeon, roboticist - Academician Dmitry Sechenov!</p>
+                    <p><strong>Sales start on May 15!</strong></p>
+                </div>
+                <div class="post-footer">
+                    <div class="post-tags">
+                        <span class="tag">Construction</span>
+                        <span class="tag">Downtown</span>
+                        <span class="tag">Infrastructure</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <footer class="footer">
+            <p><strong>City of Blackstone</strong></p>
+            <p>Phone: ████████ | Email: info@blackstone.gov</p>
+            <p style="margin-top: 10px;">
+                <a href="disclaimer.html">Disclaimer</a>
+            </p>
+            <p style="margin-top: 10px; font-size: 10px;">
+                © 2024 City of Blackstone. All rights reserved. | Best viewed in Internet Explorer 6.0+ or Firefox 1.5+
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Add some interactive effects
+        document.querySelectorAll('.mayor-post').forEach(post => {
+            post.addEventListener('mouseenter', function() {
+                this.style.borderColor = '#FFD700';
+            });
+            
+            post.addEventListener('mouseleave', function() {
+                this.style.borderColor = '#DDD';
+            });
+        });
+
+        // Gallery photo click effect
+        document.querySelectorAll('.gallery-photo').forEach(photo => {
+            photo.addEventListener('click', function() {
+                alert('Photo viewer coming soon! 📸');
+            });
+        });
+
+        // Add timestamp
+        const now = new Date();
+        const timestamp = document.createElement('div');
+        timestamp.style.cssText = 'position: fixed; bottom: 5px; right: 10px; font-size: 10px; color: #666; background: rgba(255,255,255,0.8); padding: 2px 5px; border-radius: 3px;';
+        timestamp.textContent = `Page loaded: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+        document.body.appendChild(timestamp);
+    </script>
+</body>
+</html>
