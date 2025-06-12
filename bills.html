@@ -17,7 +17,6 @@
             min-height: 100vh;
             color: #333;
         }
-
         .container {
             width: 1000px;
             margin: 0 auto;
@@ -327,59 +326,27 @@
 
         <nav class="nav-bar">
             <ul>
-                <li><a href="#">🏠 Home</a></li>
+                <li><a href="index.html">🏠 Home</a></li>
                 <li><a href="mayor-posts.html">📰 News</a></li>
             </ul>
         </nav>
-
+        
+        
+        <center>
         <div class="main-content">
-            <main class="content-area">
-                <section class="welcome-section">
-                    <h2>🌟 Welcome to Blackstone! 🌟</h2>
-                    <p>Welcome to Blackstone! You can make ANY dream come true in this city! (of course, it is not aimed at destroying the world) the city was founded in 1983 and still pleases you!</p>
-                    <br>
-                    <a href="mayor-posts.html" class="button">🔍 Mayors Posts</a>
-                </section>
-
-                <section class="news-section">
-                    <h3>📢 Latest City News & Announcements</h3>
-                    
-                    <div class="news-item">
-                        <div class="news-date">June 10, 2024</div>
-                        <strong>The construction of new snack bars in the city has begun!</strong>
-                        <p>New eateries will be available on streets 1,2,3, bon appetit)</p>
-                    </div>
-
-                    <div class="news-item">
-                        <div class="news-date">June 8, 2024</div>
-                        <strong>New park is here!</strong>
-                        <p>A monument to one of the mayors was removed from the park (at his personal request) and replaced with a beautiful fountain.</p>
-                    </div>
-
-                    <div class="news-item">
-                        <div class="news-date">June 5, 2024</div>
-                        <strong>Come to the city hall!</strong>
-                        <p>We will tell you what awaits the city in the future, and what we will do to make life in it more comfortable.</p>
-                    </div>
-                </section>
-
-                <section class="news-section">
-                    <h3>🏆 City Highlights</h3>
-                    <p>🌳 <strong>Central Park:</strong> The legendary park was built at the very birth of the city! It also houses the "Fountain of Legends"!</p>
-                    <br>
-                    <p>🏫 <strong>City Hall:</strong> The place where all decisions regarding the city are made!</p>
-                    <br>
-                    <p>🏪 <strong>"Huge stones":</strong> Huge rocks through which a tunnel passes to our city!</p>
-                </section>
-            </main>
-
-            <aside class="sidebar">
-                <h4>🔗 Quick Links</h4>
-                <ul class="quick-links">
-                    <li><a href="bills.html">💳 Pay Bills Online</a></li>
-                </ul>
-            </aside>
+            <div class="bills">
+                <label for="houseNumber">House Number</label>
+                <input type="text" id="houseNumber" name="houseNumber">
+                <br>
+                <br>
+                <label for="houseNumber">Bill ID</label>
+                <input type="text" id="houseNumber" name="houseNumber">
+                <br>
+                <br>
+                <a href="disclaimer.html"><img src="bin/Paynow-BUTTON.gif"></a>
+            </div>
         </div>
+        </center>
         <footer class="footer">
             <p><strong>City of Blackstone</strong></p>
             <p>Phone: ████████ | Email: info@blackstone.gov</p>
@@ -392,17 +359,6 @@
         </footer>
 
     <script>
-        // Classic mid-2000s JavaScript effects
-        function updateVisitorCount() {
-            const counter = document.querySelector('.visitor-counter');
-            let count = parseInt(counter.textContent.match(/\d+/)[0].replace(/,/g, ''));
-            count += Math.floor(Math.random() * 3) + 1;
-            counter.textContent = `👥 Visitors: ${count.toLocaleString().padStart(9, '0')}`;
-        }
-
-        // Update visitor count every 10 seconds
-        setInterval(updateVisitorCount, 10000);
-
         // Classic "last updated" timestamp
         const now = new Date();
         const lastUpdated = document.createElement('div');
